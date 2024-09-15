@@ -1,0 +1,97 @@
+Traceback (most recent call last):
+  File "C:\Users\kathy\miniconda3\envs\ml\lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "C:\Users\kathy\miniconda3\envs\ml\lib\site-packages\nbclient\client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "C:\Users\kathy\miniconda3\envs\ml\lib\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+  File "C:\Users\kathy\miniconda3\envs\ml\lib\asyncio\base_events.py", line 647, in run_until_complete
+    return future.result()
+  File "C:\Users\kathy\miniconda3\envs\ml\lib\site-packages\nbclient\client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "C:\Users\kathy\miniconda3\envs\ml\lib\site-packages\nbclient\client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\kathy\miniconda3\envs\ml\lib\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+mod1 = modelrl.fit(hprice_X_train, hprice_y_train) # Ajustar el modelo a los datos de entrenamiento
+
+train_score_lr = mod1.score(hprice_X_train, hprice_y_train) # R^2
+test_score_lr = mod1.score(hprice_X_test, hprice_y_train)
+
+print("The train score for lr model is {}".format(train_score_lr))
+print("The test score for lr model is {}".format(test_score_lr))
+
+
+
+
+------------------
+
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mValueError[0m                                Traceback (most recent call last)
+Cell [1;32mIn[13], line 4[0m
+[0;32m      1[0m mod1 [38;5;241m=[39m modelrl[38;5;241m.[39mfit(hprice_X_train, hprice_y_train) [38;5;66;03m# Ajustar el modelo a los datos de entrenamiento[39;00m
+[0;32m      3[0m train_score_lr [38;5;241m=[39m mod1[38;5;241m.[39mscore(hprice_X_train, hprice_y_train) [38;5;66;03m# R^2[39;00m
+[1;32m----> 4[0m test_score_lr [38;5;241m=[39m [43mmod1[49m[38;5;241;43m.[39;49m[43mscore[49m[43m([49m[43mhprice_X_test[49m[43m,[49m[43m [49m[43mhprice_y_train[49m[43m)[49m
+[0;32m      6[0m [38;5;28mprint[39m([38;5;124m"[39m[38;5;124mThe train score for lr model is [39m[38;5;132;01m{}[39;00m[38;5;124m"[39m[38;5;241m.[39mformat(train_score_lr))
+[0;32m      7[0m [38;5;28mprint[39m([38;5;124m"[39m[38;5;124mThe test score for lr model is [39m[38;5;132;01m{}[39;00m[38;5;124m"[39m[38;5;241m.[39mformat(test_score_lr))
+
+File [1;32m~\miniconda3\envs\ml\lib\site-packages\sklearn\base.py:849[0m, in [0;36mRegressorMixin.score[1;34m(self, X, y, sample_weight)[0m
+[0;32m    846[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mmetrics[39;00m [38;5;28;01mimport[39;00m r2_score
+[0;32m    848[0m y_pred [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mpredict(X)
+[1;32m--> 849[0m [38;5;28;01mreturn[39;00m [43mr2_score[49m[43m([49m[43my[49m[43m,[49m[43m [49m[43my_pred[49m[43m,[49m[43m [49m[43msample_weight[49m[38;5;241;43m=[39;49m[43msample_weight[49m[43m)[49m
+
+File [1;32m~\miniconda3\envs\ml\lib\site-packages\sklearn\utils\_param_validation.py:213[0m, in [0;36mvalidate_params.<locals>.decorator.<locals>.wrapper[1;34m(*args, **kwargs)[0m
+[0;32m    207[0m [38;5;28;01mtry[39;00m:
+[0;32m    208[0m     [38;5;28;01mwith[39;00m config_context(
+[0;32m    209[0m         skip_parameter_validation[38;5;241m=[39m(
+[0;32m    210[0m             prefer_skip_nested_validation [38;5;129;01mor[39;00m global_skip_validation
+[0;32m    211[0m         )
+[0;32m    212[0m     ):
+[1;32m--> 213[0m         [38;5;28;01mreturn[39;00m func([38;5;241m*[39margs, [38;5;241m*[39m[38;5;241m*[39mkwargs)
+[0;32m    214[0m [38;5;28;01mexcept[39;00m InvalidParameterError [38;5;28;01mas[39;00m e:
+[0;32m    215[0m     [38;5;66;03m# When the function is just a wrapper around an estimator, we allow[39;00m
+[0;32m    216[0m     [38;5;66;03m# the function to delegate validation to the estimator, but we replace[39;00m
+[0;32m    217[0m     [38;5;66;03m# the name of the estimator by the name of the function in the error[39;00m
+[0;32m    218[0m     [38;5;66;03m# message to avoid confusion.[39;00m
+[0;32m    219[0m     msg [38;5;241m=[39m re[38;5;241m.[39msub(
+[0;32m    220[0m         [38;5;124mr[39m[38;5;124m"[39m[38;5;124mparameter of [39m[38;5;124m\[39m[38;5;124mw+ must be[39m[38;5;124m"[39m,
+[0;32m    221[0m         [38;5;124mf[39m[38;5;124m"[39m[38;5;124mparameter of [39m[38;5;132;01m{[39;00mfunc[38;5;241m.[39m[38;5;18m__qualname__[39m[38;5;132;01m}[39;00m[38;5;124m must be[39m[38;5;124m"[39m,
+[0;32m    222[0m         [38;5;28mstr[39m(e),
+[0;32m    223[0m     )
+
+File [1;32m~\miniconda3\envs\ml\lib\site-packages\sklearn\metrics\_regression.py:1204[0m, in [0;36mr2_score[1;34m(y_true, y_pred, sample_weight, multioutput, force_finite)[0m
+[0;32m   1198[0m xp, _, device_ [38;5;241m=[39m get_namespace_and_device(
+[0;32m   1199[0m     y_true, y_pred, sample_weight, multioutput
+[0;32m   1200[0m )
+[0;32m   1202[0m dtype [38;5;241m=[39m _find_matching_floating_dtype(y_true, y_pred, sample_weight, xp[38;5;241m=[39mxp)
+[1;32m-> 1204[0m _, y_true, y_pred, multioutput [38;5;241m=[39m [43m_check_reg_targets[49m[43m([49m
+[0;32m   1205[0m [43m    [49m[43my_true[49m[43m,[49m[43m [49m[43my_pred[49m[43m,[49m[43m [49m[43mmultioutput[49m[43m,[49m[43m [49m[43mdtype[49m[38;5;241;43m=[39;49m[43mdtype[49m[43m,[49m[43m [49m[43mxp[49m[38;5;241;43m=[39;49m[43mxp[49m
+[0;32m   1206[0m [43m[49m[43m)[49m
+[0;32m   1207[0m check_consistent_length(y_true, y_pred, sample_weight)
+[0;32m   1209[0m [38;5;28;01mif[39;00m _num_samples(y_pred) [38;5;241m<[39m [38;5;241m2[39m:
+
+File [1;32m~\miniconda3\envs\ml\lib\site-packages\sklearn\metrics\_regression.py:111[0m, in [0;36m_check_reg_targets[1;34m(y_true, y_pred, multioutput, dtype, xp)[0m
+[0;32m     76[0m [38;5;250m[39m[38;5;124;03m"""Check that y_true and y_pred belong to the same regression task.[39;00m
+[0;32m     77[0m 
+[0;32m     78[0m [38;5;124;03mParameters[39;00m
+[1;32m   (...)[0m
+[0;32m    107[0m [38;5;124;03m    correct keyword.[39;00m
+[0;32m    108[0m [38;5;124;03m"""[39;00m
+[0;32m    109[0m xp, _ [38;5;241m=[39m get_namespace(y_true, y_pred, multioutput, xp[38;5;241m=[39mxp)
+[1;32m--> 111[0m [43mcheck_consistent_length[49m[43m([49m[43my_true[49m[43m,[49m[43m [49m[43my_pred[49m[43m)[49m
+[0;32m    112[0m y_true [38;5;241m=[39m check_array(y_true, ensure_2d[38;5;241m=[39m[38;5;28;01mFalse[39;00m, dtype[38;5;241m=[39mdtype)
+[0;32m    113[0m y_pred [38;5;241m=[39m check_array(y_pred, ensure_2d[38;5;241m=[39m[38;5;28;01mFalse[39;00m, dtype[38;5;241m=[39mdtype)
+
+File [1;32m~\miniconda3\envs\ml\lib\site-packages\sklearn\utils\validation.py:457[0m, in [0;36mcheck_consistent_length[1;34m(*arrays)[0m
+[0;32m    455[0m uniques [38;5;241m=[39m np[38;5;241m.[39munique(lengths)
+[0;32m    456[0m [38;5;28;01mif[39;00m [38;5;28mlen[39m(uniques) [38;5;241m>[39m [38;5;241m1[39m:
+[1;32m--> 457[0m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
+[0;32m    458[0m         [38;5;124m"[39m[38;5;124mFound input variables with inconsistent numbers of samples: [39m[38;5;132;01m%r[39;00m[38;5;124m"[39m
+[0;32m    459[0m         [38;5;241m%[39m [[38;5;28mint[39m(l) [38;5;28;01mfor[39;00m l [38;5;129;01min[39;00m lengths]
+[0;32m    460[0m     )
+
+[1;31mValueError[0m: Found input variables with inconsistent numbers of samples: [381, 164]
+
